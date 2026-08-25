@@ -3,229 +3,222 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>RM Streaming Hub</title>
 
 <style>
 *{box-sizing:border-box}
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f6f2f7;
-  color:#241d29;
+margin:0;
+font-family:Arial,sans-serif;
+background:#f6f2f7;
+color:#241d29
 }
 
 header{
-  background:linear-gradient(135deg,#201829,#765d80);
-  color:white;
-  text-align:center;
-  padding:45px 20px;
+background:linear-gradient(135deg,#201829,#765d80);
+color:white;
+text-align:center;
+padding:45px 20px
 }
 
 header h1{
-  font-size:38px;
-  margin:0 0 10px;
+font-size:38px;
+margin:0 0 10px
 }
 
 header p{
-  margin:0;
-  opacity:.9;
+margin:0;
+opacity:.9
 }
 
 nav{
-  background:white;
-  padding:12px;
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  position:sticky;
-  top:0;
-  z-index:10;
-  box-shadow:0 2px 10px #0001;
-  overflow-x:auto;
+background:white;
+padding:12px;
+display:flex;
+justify-content:center;
+gap:8px;
+position:sticky;
+top:0;
+z-index:10;
+box-shadow:0 2px 10px #0001;
+overflow-x:auto
 }
 
 nav button{
-  border:none;
-  background:#eee8f0;
-  padding:10px 15px;
-  border-radius:20px;
-  cursor:pointer;
-  white-space:nowrap;
+border:0;
+background:#eee8f0;
+padding:10px 16px;
+border-radius:20px;
+cursor:pointer;
+white-space:nowrap
 }
 
 nav button:hover{
-  background:#765d80;
-  color:white;
+background:#765d80;
+color:white
 }
 
 .container{
-  max-width:1000px;
-  margin:auto;
-  padding:20px;
+max-width:1000px;
+margin:auto;
+padding:20px
 }
 
 .card{
-  background:white;
-  padding:22px;
-  margin:18px 0;
-  border-radius:20px;
-  box-shadow:0 5px 20px #00000010;
+background:white;
+padding:22px;
+margin:18px 0;
+border-radius:20px;
+box-shadow:0 5px 20px #00000010
 }
 
 h2{
-  margin-top:0;
+margin-top:0
 }
 
 .mission{
-  font-size:20px;
-  font-weight:bold;
-  margin:12px 0;
+font-size:20px;
+font-weight:bold;
+margin:12px 0
 }
 
 .progress{
-  height:16px;
-  background:#e8e1eb;
-  border-radius:20px;
-  overflow:hidden;
+height:16px;
+background:#e8e1eb;
+border-radius:20px;
+overflow:hidden
 }
 
 .progress-bar{
-  height:100%;
-  width:0%;
-  background:#765d80;
-  transition:width .5s;
+height:100%;
+width:0%;
+background:#765d80;
+transition:width .5s
 }
 
-.platforms{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:15px;
+button.action{
+width:100%;
+border:0;
+background:#765d80;
+color:white;
+padding:15px;
+border-radius:12px;
+font-size:16px;
+cursor:pointer;
+margin-top:10px
 }
 
-.platform{
-  border:1px solid #e4dfe6;
-  border-radius:16px;
-  padding:18px;
-}
-
-.platform h3{
-  margin-top:0;
-}
-
-.number{
-  font-size:25px;
-  font-weight:bold;
-}
-
-.buttons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-}
-
-.btn{
-  display:inline-block;
-  text-decoration:none;
-  color:white;
-  background:#241d29;
-  padding:12px 17px;
-  border-radius:12px;
-}
-
-.btn:hover{
-  opacity:.85;
-}
-
-.stream-button{
-  display:block;
-  width:100%;
-  border:0;
-  background:#765d80;
-  color:white;
-  padding:15px;
-  border-radius:14px;
-  font-size:16px;
-  cursor:pointer;
-  margin-top:12px;
-}
-
-.stream-button:disabled{
-  background:#aaa;
-  cursor:not-allowed;
+button.action:disabled{
+background:#999;
+cursor:not-allowed
 }
 
 .status{
-  padding:14px;
-  margin-top:15px;
-  border-radius:12px;
-  background:#f3edf5;
-  text-align:center;
-  font-weight:bold;
+background:#f3edf5;
+padding:14px;
+border-radius:12px;
+margin-top:12px;
+text-align:center;
+font-weight:bold
 }
 
-.goal-box{
-  text-align:center;
-  padding:25px;
-  border-radius:18px;
-  background:#f3edf5;
+.platforms{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px
 }
 
-.big{
-  font-size:35px;
-  font-weight:bold;
+.platform{
+border:1px solid #e4dfe6;
+border-radius:16px;
+padding:18px
+}
+
+.platform h3{
+margin-top:0
+}
+
+.platform-status{
+font-size:22px;
+font-weight:bold;
+margin:10px 0
+}
+
+.btn{
+display:inline-block;
+text-decoration:none;
+color:white;
+background:#241d29;
+padding:12px 16px;
+border-radius:12px;
+margin:5px
+}
+
+.btn:hover{
+opacity:.8
 }
 
 .hidden{
-  display:none;
+display:none
+}
+
+.goal-box{
+text-align:center;
+padding:25px;
+border-radius:18px;
+background:#f3edf5
+}
+
+.big{
+font-size:42px;
+font-weight:bold
 }
 
 .celebration{
-  text-align:center;
-  background:linear-gradient(135deg,#201829,#765d80);
-  color:white;
+background:linear-gradient(135deg,#201829,#765d80);
+color:white;
+text-align:center
 }
 
 .reward{
-  background:white;
-  color:#241d29;
-  padding:20px;
-  border-radius:16px;
-  margin-top:18px;
-  font-size:18px;
-  font-style:italic;
-}
-
-.small{
-  color:#777;
-  font-size:13px;
+background:white;
+color:#241d29;
+padding:22px;
+border-radius:16px;
+margin-top:20px;
+font-size:18px;
+font-style:italic
 }
 
 table{
-  width:100%;
-  border-collapse:collapse;
+width:100%;
+border-collapse:collapse
 }
 
 th,td{
-  padding:12px 8px;
-  border-bottom:1px solid #eee;
+padding:12px 8px;
+border-bottom:1px solid #eee;
+text-align:left
+}
+
+.small{
+font-size:13px;
+color:#777
 }
 
 footer{
-  text-align:center;
-  padding:30px;
-  color:#766c7a;
-  font-size:13px;
+text-align:center;
+padding:30px;
+font-size:13px;
+color:#766c7a
 }
 
 @media(max-width:600px){
-  header h1{
-    font-size:30px;
-  }
-
-  nav{
-    justify-content:flex-start;
-  }
+header h1{
+font-size:30px
+}
 }
 </style>
 </head>
@@ -233,229 +226,326 @@ footer{
 <body>
 
 <header>
-  <h1>🐨 RM Streaming Hub</h1>
-  <p>Stream • Support • Achieve</p>
+<h1>🐨 RM Streaming Hub</h1>
+<p>Stream • Support • Achieve</p>
 </header>
 
 <nav>
-  <button onclick="showSection('home')">Home</button>
-  <button onclick="showSection('missions')">Missions</button>
-  <button onclick="showSection('platforms')">Platforms</button>
-  <button onclick="showSection('guide')">Streaming Guide</button>
+<button onclick="showSection('home')">Home</button>
+<button onclick="showSection('missions')">Missions</button>
+<button onclick="showSection('platforms')">Platforms</button>
+<button onclick="showSection('guide')">Guide</button>
 </nav>
 
 <div class="container">
 
 <!-- HOME -->
+
 <section id="home">
 
 <div class="card">
-  <h2>🎯 Today's Mission</h2>
 
-  <div class="mission">
-    Complete one listening session for RM's <b>Wild Flower</b>.
-  </div>
+<h2>🎯 Today's RM Mission</h2>
 
-  <div class="progress">
-    <div class="progress-bar" id="dailyBar"></div>
-  </div>
+<div class="mission">
+Listen to RM's <b>Wild Flower</b>
+</div>
 
-  <p id="dailyText">0 / 1 completed</p>
+<div class="progress">
+<div class="progress-bar" id="musicBar"></div>
+</div>
 
-  <button class="stream-button" id="streamButton"
-    onclick="startStreamSession()">
-    🎧 Listen to Wild Flower
-  </button>
+<p id="musicProgress">
+0 / 1 complete listen session
+</p>
 
-  <div class="status" id="streamStatus">
-    Ready to start your mission.
-  </div>
+<button
+class="action"
+id="musicButton"
+onclick="startMusicMission()">
+
+🎧 Open Wild Flower on Spotify
+
+</button>
+
+<div class="status" id="musicStatus">
+Ready to begin.
+</div>
+
 </div>
 
 
 <div class="card">
-  <h2>▶️ Wild Flower MV Mission</h2>
 
-  <div class="mission">
-    Watch the official MV.
-  </div>
+<h2>▶️ Wild Flower MV Mission</h2>
 
-  <div class="progress">
-    <div class="progress-bar" id="mvBar"></div>
-  </div>
+<div class="mission">
+Watch the official Wild Flower MV
+</div>
 
-  <p id="mvText">0 / 1 completed</p>
+<div class="progress">
+<div class="progress-bar" id="mvBar"></div>
+</div>
 
-  <button class="stream-button" id="mvButton"
-    onclick="startMVSession()">
-    ▶️ Watch Wild Flower MV
-  </button>
+<p id="mvProgress">
+0 / 1 completed MV session
+</p>
 
-  <div class="status" id="mvStatus">
-    Ready to start the MV mission.
-  </div>
+<button
+class="action"
+id="mvButton"
+onclick="startMVMission()">
+
+▶️ Open Wild Flower MV
+
+</button>
+
+<div class="status" id="mvStatus">
+Ready to begin.
+</div>
+
 </div>
 
 
 <div class="card">
-  <h2>📊 Platform Tracker</h2>
 
-  <div class="platforms">
+<h2>📊 RM Platform Tracker</h2>
 
-    <div class="platform">
-      <h3>🟢 Spotify</h3>
-      <div class="number" id="spotifyStatus">Available</div>
-      <p class="small">
-        Spotify does not provide public individual-stream
-        confirmation to this website.
-      </p>
-    </div>
+<div class="platforms">
 
-    <div class="platform">
-      <h3>▶️ YouTube</h3>
-      <div class="number" id="youtubeStatus">Available</div>
-      <p class="small">
-        Public video statistics can be connected through
-        an appropriate API later.
-      </p>
-    </div>
+<div class="platform">
 
-    <div class="platform">
-      <h3>🍎 Apple Music</h3>
-      <div class="number">Available</div>
-      <p class="small">
-        Official catalog information can be connected later.
-      </p>
-    </div>
+<h3>🟢 Spotify</h3>
 
-    <div class="platform">
-      <h3>🎵 iTunes</h3>
-      <div class="number">Available</div>
-      <p class="small">
-        Official Apple catalog information can be connected later.
-      </p>
-    </div>
+<div class="platform-status">
+Catalog connected
+</div>
 
-  </div>
+<p class="small">
+Spotify's public Web API does not provide the global
+stream count for an artist or song.
+</p>
+
+<a
+class="btn"
+href="https://open.spotify.com/"
+target="_blank"
+rel="noopener">
+
+Open Spotify
+
+</a>
+
+</div>
+
+
+<div class="platform">
+
+<h3>▶️ YouTube</h3>
+
+<div class="platform-status">
+Official views
+</div>
+
+<p class="small">
+YouTube provides public video statistics through
+its Data API.
+</p>
+
+<a
+class="btn"
+href="https://www.youtube.com/results?search_query=RM+Wild+Flower+official+MV"
+target="_blank"
+rel="noopener">
+
+Find Wild Flower MV
+
+</a>
+
+</div>
+
+
+<div class="platform">
+
+<h3>🍎 Apple Music</h3>
+
+<div class="platform-status">
+Catalog available
+</div>
+
+<a
+class="btn"
+href="https://music.apple.com/"
+target="_blank"
+rel="noopener">
+
+Open Apple Music
+
+</a>
+
+</div>
+
+
+<div class="platform">
+
+<h3>🎵 iTunes</h3>
+
+<div class="platform-status">
+Catalog available
+</div>
+
+<a
+class="btn"
+href="https://www.apple.com/itunes/"
+target="_blank"
+rel="noopener">
+
+Open iTunes
+
+</a>
+
+</div>
+
+</div>
+
 </div>
 
 
 <div class="card">
-  <h2>🎧 Listen to RM</h2>
 
-  <div class="buttons">
+<h2>🎧 RM Music</h2>
 
-    <a class="btn"
-       href="https://open.spotify.com/track/5Kk0s8Xq2s6J2wVx3rZ5zM"
-       target="_blank"
-       rel="noopener">
-       🟢 Wild Flower on Spotify
-    </a>
+<a
+class="btn"
+href="https://open.spotify.com/"
+target="_blank">
 
-    <a class="btn"
-       href="https://www.youtube.com/results?search_query=RM+Wild+Flower+official+MV"
-       target="_blank"
-       rel="noopener">
-       ▶️ Wild Flower on YouTube
-    </a>
+🟢 Spotify
 
-    <a class="btn"
-       href="https://music.apple.com/"
-       target="_blank"
-       rel="noopener">
-       🍎 Apple Music
-    </a>
+</a>
 
-    <a class="btn"
-       href="https://www.apple.com/itunes/"
-       target="_blank"
-       rel="noopener">
-       🎵 iTunes
-    </a>
+<a
+class="btn"
+href="https://www.youtube.com/results?search_query=RM+Wild+Flower+official+MV"
+target="_blank">
 
-  </div>
+▶️ YouTube
+
+</a>
+
+<a
+class="btn"
+href="https://music.apple.com/"
+target="_blank">
+
+🍎 Apple Music
+
+</a>
+
+<a
+class="btn"
+href="https://www.apple.com/itunes/"
+target="_blank">
+
+🎵 iTunes
+
+</a>
+
 </div>
 
 </section>
 
 
 <!-- MISSIONS -->
+
 <section id="missions" class="hidden">
 
 <div class="card">
-  <h2>🎯 Daily Mission</h2>
 
-  <div class="goal-box">
-    <div class="big">🌸</div>
+<h2>🎯 Daily Mission</h2>
 
-    <p>
-      Listen to RM's <b>Wild Flower</b> through the official
-      Spotify service.
-    </p>
+<div class="goal-box">
 
-    <p>
-      Keep the song playing normally. The website records
-      completion of the mission session, not Spotify's official
-      stream count.
-    </p>
-  </div>
+<div class="big">🌸</div>
+
+<p>
+Complete one listening session for RM's
+<b>Wild Flower</b>.
+</p>
+
+</div>
+
 </div>
 
 
 <div class="card">
-  <h2>🏆 Mission Rules</h2>
 
-  <p>1. Use an official music platform.</p>
-  <p>2. Listen normally.</p>
-  <p>3. Do not use bots or artificial streaming.</p>
-  <p>4. Complete the required listening session.</p>
-  <p>5. Return to the hub to see your celebration.</p>
+<h2>🏆 How It Works</h2>
+
+<p>1. Tap the official music button.</p>
+
+<p>2. Spotify or YouTube opens.</p>
+
+<p>3. Listen/watch normally.</p>
+
+<p>4. The RM Hub records completion of the mission session.</p>
+
+<p>5. Complete both missions to unlock your celebration.</p>
+
 </div>
 
 </section>
 
 
 <!-- PLATFORMS -->
+
 <section id="platforms" class="hidden">
 
 <div class="card">
 
 <h2>📈 RM Platform Monitor</h2>
 
-<p class="small">
-This section is designed for legitimate public statistics.
-It does not pretend that a fan's individual listening session
-is an official Spotify stream.
-</p>
-
 <table>
 
 <tr>
-<th style="text-align:left">Platform</th>
-<th>Data status</th>
+<th>Platform</th>
+<th>Status</th>
+<th>What we can show</th>
 </tr>
 
 <tr>
 <td>🟢 Spotify</td>
-<td style="text-align:center">Catalog available</td>
+<td>Connected link</td>
+<td>RM catalog / official Spotify links</td>
 </tr>
 
 <tr>
 <td>▶️ YouTube</td>
-<td style="text-align:center">Public view data available</td>
+<td>API-ready</td>
+<td>Official video view counts</td>
 </tr>
 
 <tr>
 <td>🍎 Apple Music</td>
-<td style="text-align:center">Catalog data available</td>
+<td>Connected link</td>
+<td>RM catalog</td>
 </tr>
 
 <tr>
 <td>🎵 iTunes</td>
-<td style="text-align:center">Catalog/chart data where available</td>
+<td>Connected link</td>
+<td>RM catalog / chart information</td>
 </tr>
 
 </table>
+
+<br>
+
+<p class="small">
+Important: numbers are only displayed when they come from
+an actual permitted data source. The hub will not invent
+Spotify stream numbers.
+</p>
 
 </div>
 
@@ -463,82 +553,79 @@ is an official Spotify stream.
 
 
 <!-- GUIDE -->
+
 <section id="guide" class="hidden">
 
 <div class="card">
 
-<h2>📖 RM Streaming Guide</h2>
+<h2>📖 Streaming Guide</h2>
 
-<h3>🎧 Spotify</h3>
+<h3>🟢 Spotify</h3>
+
 <p>
-Use the official Spotify app or website and listen normally.
-Avoid artificial or automated streaming.
+Listen normally through the official Spotify service.
 </p>
 
 <h3>▶️ YouTube</h3>
+
 <p>
-Watch official RM videos normally and follow YouTube's rules.
+Watch the official MV normally and follow YouTube's rules.
 </p>
 
 <h3>🍎 Apple Music</h3>
+
 <p>
-Listen through official Apple Music services and follow
-Apple's usage rules.
+Use the official Apple Music service.
 </p>
 
 <h3>🎵 iTunes</h3>
-<p>
-Use official Apple purchasing and chart services where
-applicable.
-</p>
-
-</div>
-
-
-<div class="card">
-<h2>💜 Our Goal</h2>
 
 <p>
-This website is a fan-made space created to help ARMY
-organize streaming goals and celebrate RM's music.
+Use Apple's official purchasing/chart services where applicable.
 </p>
+
 </div>
 
 </section>
 
 
 <!-- CELEBRATION -->
+
 <section id="celebration" class="hidden">
 
 <div class="card celebration">
 
 <h2>🎉 MISSION COMPLETE!</h2>
 
-<div style="font-size:55px">🐨💜🌸</div>
+<div style="font-size:60px">
+🐨💜🌸
+</div>
 
 <h3>You did it, ARMY!</h3>
 
 <p>
-Thank you for supporting RM and completing today's mission.
+Thank you for supporting RM.
 </p>
 
 <div class="reward">
 
-<strong>Your RM-inspired reward:</strong>
+<strong>Today's RM-inspired reward</strong>
 
 <br><br>
 
-“Your efforts become part of something bigger.
-Keep moving forward, keep creating, and keep your own
-flower blooming.”
+“Keep moving forward, keep creating,
+and let your own flower bloom.”
 
 <br><br>
 
 — RM-inspired fan reward
+
 </div>
 
-<p style="margin-top:20px">
-✨ Come back tomorrow for a new mission!
+<br>
+
+<p>
+✨ Come back tomorrow for another mission.
 </p>
 
 </div>
@@ -549,232 +636,240 @@ flower blooming.”
 
 
 <footer>
+
 RM Streaming Hub • Fan-made project
+
 <br><br>
-Not affiliated with BTS, BIGHIT MUSIC, HYBE, Spotify,
-YouTube, Apple Music or iTunes.
+
+Not affiliated with BTS, BIGHIT MUSIC, HYBE,
+Spotify, YouTube, Apple Music or iTunes.
+
 </footer>
 
 
 <script>
 
-const SPOTIFY_URL =
+const WILDFLOWER_SPOTIFY =
 "https://open.spotify.com/";
 
-const YOUTUBE_URL =
+const WILDFLOWER_YOUTUBE =
 "https://www.youtube.com/results?search_query=RM+Wild+Flower+official+MV";
 
-let musicCompleted =
-localStorage.getItem("rmMusicCompleted") === "true";
 
-let mvCompleted =
-localStorage.getItem("rmMVCompleted") === "true";
+let musicDone =
+localStorage.getItem("rmMusicDone") === "true";
+
+let mvDone =
+localStorage.getItem("rmMVDone") === "true";
 
 
 function showSection(section){
 
-  const sections = [
-    "home",
-    "missions",
-    "platforms",
-    "guide",
-    "celebration"
-  ];
+const sections=[
+"home",
+"missions",
+"platforms",
+"guide",
+"celebration"
+];
 
-  sections.forEach(function(id){
+sections.forEach(function(id){
 
-    document.getElementById(id)
-      .classList.add("hidden");
+document.getElementById(id)
+.classList.add("hidden");
 
-  });
+});
 
-  document.getElementById(section)
-    .classList.remove("hidden");
+document.getElementById(section)
+.classList.remove("hidden");
+
 }
 
 
-function updateMission(){
+function updateUI(){
 
-  const musicPercent = musicCompleted ? 100 : 0;
-  const mvPercent = mvCompleted ? 100 : 0;
+document.getElementById("musicBar")
+.style.width = musicDone ? "100%" : "0%";
 
-  document.getElementById("dailyBar")
-    .style.width = musicPercent + "%";
+document.getElementById("musicProgress")
+.innerText =
+musicDone
+? "1 / 1 complete listen session"
+: "0 / 1 complete listen session";
 
-  document.getElementById("dailyText")
-    .innerText =
-    musicCompleted
-      ? "1 / 1 completed"
-      : "0 / 1 completed";
 
-  document.getElementById("mvBar")
-    .style.width = mvPercent + "%";
+document.getElementById("mvBar")
+.style.width = mvDone ? "100%" : "0%";
 
-  document.getElementById("mvText")
-    .innerText =
-    mvCompleted
-      ? "1 / 1 completed"
-      : "0 / 1 completed";
+document.getElementById("mvProgress")
+.innerText =
+mvDone
+? "1 / 1 completed MV session"
+: "0 / 1 completed MV session";
 
-  if(musicCompleted){
 
-    document.getElementById("streamButton").disabled = true;
+if(musicDone){
 
-    document.getElementById("streamButton")
-      .innerText = "✅ 1 Complete Listen Recorded";
+document.getElementById("musicButton")
+.disabled=true;
 
-    document.getElementById("streamStatus")
-      .innerText =
-      "Your listening mission has been completed.";
-  }
+document.getElementById("musicButton")
+.innerText="✅ Listen Session Recorded";
 
-  if(mvCompleted){
+document.getElementById("musicStatus")
+.innerText=
+"Your Wild Flower listening mission is complete.";
 
-    document.getElementById("mvButton").disabled = true;
-
-    document.getElementById("mvButton")
-      .innerText = "✅ 1 Complete MV Session Recorded";
-
-    document.getElementById("mvStatus")
-      .innerText =
-      "Your MV mission has been completed.";
-  }
-
-  if(musicCompleted && mvCompleted){
-
-    setTimeout(function(){
-      showSection("celebration");
-    },500);
-
-  }
 }
 
 
-function startStreamSession(){
+if(mvDone){
 
-  if(musicCompleted) return;
+document.getElementById("mvButton")
+.disabled=true;
 
-  const button =
-    document.getElementById("streamButton");
+document.getElementById("mvButton")
+.innerText="✅ MV Session Recorded";
 
-  const status =
-    document.getElementById("streamStatus");
+document.getElementById("mvStatus")
+.innerText=
+"Your Wild Flower MV mission is complete.";
 
-  button.disabled = true;
+}
 
-  status.innerText =
-    "Spotify opened. Listen normally for 30 seconds...";
-
-  window.open(
-    SPOTIFY_URL,
-    "_blank",
-    "noopener"
-  );
-
-  let seconds = 30;
-
-  const timer = setInterval(function(){
-
-    seconds--;
-
-    status.innerText =
-      "Listening session: " +
-      seconds +
-      " seconds remaining.";
-
-    if(seconds <= 0){
-
-      clearInterval(timer);
-
-      musicCompleted = true;
-
-      localStorage.setItem(
-        "rmMusicCompleted",
-        "true"
-      );
-
-      status.innerText =
-        "✅ Complete listen recorded on the RM Hub.";
-
-      updateMission();
-
-      if(mvCompleted){
-
-        setTimeout(function(){
-          showSection("celebration");
-        },700);
-
-      }
-
-    }
-
-  },1000);
 }
 
 
-function startMVSession(){
+function startMusicMission(){
 
-  if(mvCompleted) return;
+if(musicDone)return;
 
-  const button =
-    document.getElementById("mvButton");
+const button=
+document.getElementById("musicButton");
 
-  const status =
-    document.getElementById("mvStatus");
+const status=
+document.getElementById("musicStatus");
 
-  button.disabled = true;
+button.disabled=true;
 
-  status.innerText =
-    "YouTube opened. Watch normally for 30 seconds...";
+window.open(
+WILDFLOWER_SPOTIFY,
+"_blank",
+"noopener"
+);
 
-  window.open(
-    YOUTUBE_URL,
-    "_blank",
-    "noopener"
-  );
+let seconds=30;
 
-  let seconds = 30;
+status.innerText=
+"Spotify opened. Listen normally for 30 seconds.";
 
-  const timer = setInterval(function(){
+const timer=setInterval(function(){
 
-    seconds--;
+seconds--;
 
-    status.innerText =
-      "MV session: " +
-      seconds +
-      " seconds remaining.";
+status.innerText=
+"Listening session: "+
+seconds+
+" seconds remaining.";
 
-    if(seconds <= 0){
+if(seconds<=0){
 
-      clearInterval(timer);
+clearInterval(timer);
 
-      mvCompleted = true;
+musicDone=true;
 
-      localStorage.setItem(
-        "rmMVCompleted",
-        "true"
-      );
+localStorage.setItem(
+"rmMusicDone",
+"true"
+);
 
-      status.innerText =
-        "✅ Complete MV session recorded on the RM Hub.";
+updateUI();
 
-      updateMission();
+status.innerText=
+"✅ Complete listening session recorded.";
 
-      if(musicCompleted){
+checkCelebration();
 
-        setTimeout(function(){
-          showSection("celebration");
-        },700);
+}
 
-      }
+},1000);
 
-    }
-
-  },1000);
 }
 
 
-updateMission();
+function startMVMission(){
+
+if(mvDone)return;
+
+const button=
+document.getElementById("mvButton");
+
+const status=
+document.getElementById("mvStatus");
+
+button.disabled=true;
+
+window.open(
+WILDFLOWER_YOUTUBE,
+"_blank",
+"noopener"
+);
+
+let seconds=30;
+
+status.innerText=
+"YouTube opened. Watch normally for 30 seconds.";
+
+const timer=setInterval(function(){
+
+seconds--;
+
+status.innerText=
+"MV session: "+
+seconds+
+" seconds remaining.";
+
+if(seconds<=0){
+
+clearInterval(timer);
+
+mvDone=true;
+
+localStorage.setItem(
+"rmMVDone",
+"true"
+);
+
+updateUI();
+
+status.innerText=
+"✅ Complete MV session recorded.";
+
+checkCelebration();
+
+}
+
+},1000);
+
+}
+
+
+function checkCelebration(){
+
+if(musicDone && mvDone){
+
+setTimeout(function(){
+
+showSection("celebration");
+
+},700);
+
+}
+
+}
+
+
+updateUI();
 
 </script>
 
