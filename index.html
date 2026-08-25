@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>RM Streaming Hub</title>
 
 <style>
@@ -20,11 +19,11 @@ header{
 background:linear-gradient(135deg,#201829,#765d80);
 color:white;
 text-align:center;
-padding:42px 20px
+padding:45px 20px
 }
 
 header h1{
-font-size:34px;
+font-size:35px;
 margin:0 0 8px
 }
 
@@ -35,9 +34,9 @@ opacity:.9
 
 nav{
 background:white;
+padding:12px;
 display:flex;
 gap:8px;
-padding:12px;
 overflow-x:auto;
 position:sticky;
 top:0;
@@ -50,8 +49,8 @@ border:0;
 background:#eee8f0;
 padding:10px 16px;
 border-radius:20px;
-white-space:nowrap;
-cursor:pointer
+cursor:pointer;
+white-space:nowrap
 }
 
 nav button:hover{
@@ -62,7 +61,7 @@ color:white
 .container{
 max-width:950px;
 margin:auto;
-padding:18px
+padding:20px
 }
 
 .card{
@@ -78,28 +77,61 @@ text-align:center;
 background:linear-gradient(135deg,#eee5f1,#fff)
 }
 
-.cover{
-font-size:70px;
-margin:5px
+.flower{
+font-size:70px
 }
 
 h2{
 margin-top:0
 }
 
-.mission-title{
-font-size:26px;
+.song{
+font-size:28px;
 font-weight:bold;
 margin:10px 0
 }
 
-.subtitle{
+.artist{
 color:#6f6572
 }
 
-.goal{
-font-size:18px;
+.buttons{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+justify-content:center;
+margin-top:18px
+}
+
+.btn{
+display:inline-block;
+border:0;
+padding:13px 18px;
+border-radius:12px;
+text-decoration:none;
+color:white;
+cursor:pointer;
 font-weight:bold
+}
+
+.spotify{
+background:#1db954
+}
+
+.youtube{
+background:#d00000
+}
+
+.apple{
+background:#555
+}
+
+.mission-btn{
+background:#765d80
+}
+
+.reset{
+background:#777
 }
 
 .progress{
@@ -107,7 +139,7 @@ height:16px;
 background:#e8e1eb;
 border-radius:20px;
 overflow:hidden;
-margin:10px 0
+margin:12px 0
 }
 
 .bar{
@@ -117,44 +149,9 @@ background:#765d80;
 transition:.4s
 }
 
-.buttons{
-display:flex;
-flex-wrap:wrap;
-gap:10px;
-margin-top:15px
-}
-
-.btn{
-border:0;
-text-decoration:none;
-color:white;
-background:#241d29;
-padding:12px 16px;
-border-radius:12px;
-cursor:pointer;
-display:inline-block
-}
-
-.btn.spotify{
-background:#1db954
-}
-
-.btn.youtube{
-background:#d00
-}
-
-.btn.apple{
-background:#555
-}
-
-.btn.done{
-background:#765d80
-}
-
-.status{
-font-size:14px;
-color:#6b6370;
-margin-top:10px
+.goal{
+font-size:19px;
+font-weight:bold
 }
 
 .platforms{
@@ -164,7 +161,7 @@ gap:15px
 }
 
 .platform{
-border:1px solid #e5dfe7;
+border:1px solid #e4dfe6;
 border-radius:16px;
 padding:18px
 }
@@ -179,12 +176,19 @@ font-size:13px;
 color:#777
 }
 
+.notice{
+background:#f3edf5;
+padding:15px;
+border-radius:12px;
+line-height:1.5
+}
+
 input{
 width:100%;
 padding:12px;
 border:1px solid #ddd;
 border-radius:10px;
-margin:6px 0 14px;
+margin:7px 0 14px;
 font-size:15px
 }
 
@@ -192,29 +196,8 @@ label{
 font-weight:bold
 }
 
-.admin-button{
-background:#765d80;
-color:white;
-border:0;
-padding:12px 18px;
-border-radius:10px;
-cursor:pointer
-}
-
-.reset{
-background:#ddd;
-color:#222
-}
-
 .hidden{
 display:none
-}
-
-.notice{
-background:#f3edf5;
-padding:14px;
-border-radius:12px;
-font-size:14px
 }
 
 footer{
@@ -225,9 +208,9 @@ color:#766c7a
 }
 
 @media(max-width:600px){
-header h1{font-size:28px}
+header h1{font-size:29px}
 .card{padding:18px}
-.mission-title{font-size:22px}
+.song{font-size:23px}
 }
 </style>
 </head>
@@ -240,10 +223,10 @@ header h1{font-size:28px}
 </header>
 
 <nav>
-<button onclick="show('home')">Home</button>
-<button onclick="show('missions')">Missions</button>
-<button onclick="show('platforms')">Platforms</button>
-<button onclick="show('admin')">Admin</button>
+<button onclick="showSection('home')">Home</button>
+<button onclick="showSection('missions')">Missions</button>
+<button onclick="showSection('platforms')">Platforms</button>
+<button onclick="showSection('admin')">Mission Editor</button>
 </nav>
 
 <div class="container">
@@ -254,36 +237,36 @@ header h1{font-size:28px}
 
 <div class="card hero">
 
-<div class="cover">🌸</div>
+<div class="flower">🌸</div>
 
-<h2>Today's RM Mission</h2>
+<h2>Today's Mission</h2>
 
-<div class="mission-title" id="homeSong">
+<div class="song" id="songTitle">
 Wild Flower
 </div>
 
-<p class="subtitle" id="homeArtist">
+<p class="artist" id="artistName">
 RM (with youjeen)
 </p>
 
 <div class="buttons">
 
 <a
+id="spotifyButton"
 class="btn spotify"
-id="spotifyLink"
-href="https://open.spotify.com/search/RM%20Wild%20Flower"
+href="https://open.spotify.com/track/1AZjCZSGEjlxUufFQwSszF"
 target="_blank"
 rel="noopener">
 🎧 Listen on Spotify
 </a>
 
 <a
+id="youtubeButton"
 class="btn youtube"
-id="youtubeLink"
-href="https://www.youtube.com/results?search_query=RM+Wild+Flower+official+MV"
+href="https://www.youtube.com/watch?v=u18be_kRmC0"
 target="_blank"
 rel="noopener">
-▶️ Watch MV
+▶️ Watch Official MV
 </a>
 
 </div>
@@ -291,51 +274,55 @@ rel="noopener">
 </div>
 
 
-<!-- SPOTIFY MISSION -->
+<!-- SPOTIFY -->
 
 <div class="card">
 
-<h2>🎧 Spotify Mission</h2>
+<h2>🎧 Spotify Goal</h2>
 
-<div class="goal" id="spotifyGoalText">
-Listen 5 times
-</div>
+<p class="goal">
+Listen to Wild Flower 5 times
+</p>
 
 <div class="progress">
-<div class="bar" id="spotifyBar"></div>
+<div id="spotifyBar" class="bar"></div>
 </div>
 
-<p id="spotifyProgress">0 / 5 completed</p>
+<p id="spotifyProgress">
+0 / 5 completed
+</p>
 
 <button
-class="btn done"
-onclick="addSpotifyProgress()">
-I completed 1 listen
+class="btn mission-btn"
+onclick="addSpotify()">
+Record 1 completed listen
 </button>
 
 </div>
 
 
-<!-- YOUTUBE MISSION -->
+<!-- YOUTUBE -->
 
 <div class="card">
 
-<h2>▶️ YouTube MV Mission</h2>
+<h2>▶️ YouTube MV Goal</h2>
 
-<div class="goal" id="youtubeGoalText">
-Watch the MV 2 times
-</div>
+<p class="goal">
+Watch the official MV 2 times
+</p>
 
 <div class="progress">
-<div class="bar" id="youtubeBar"></div>
+<div id="youtubeBar" class="bar"></div>
 </div>
 
-<p id="youtubeProgress">0 / 2 completed</p>
+<p id="youtubeProgress">
+0 / 2 completed
+</p>
 
 <button
-class="btn done"
-onclick="addYoutubeProgress()">
-I completed 1 watch
+class="btn mission-btn"
+onclick="addYoutube()">
+Record 1 completed watch
 </button>
 
 </div>
@@ -345,18 +332,18 @@ I completed 1 watch
 
 <div class="card">
 
-<h2>📅 Weekly Goal</h2>
+<h2>📅 Weekly Mission</h2>
 
-<div class="goal">
-Complete the daily missions and support RM throughout the week.
-</div>
+<p class="goal">
+Complete today's mission and continue supporting RM throughout the week.
+</p>
 
 <div class="progress">
-<div class="bar" id="weeklyBar"></div>
+<div id="weeklyBar" class="bar"></div>
 </div>
 
-<p id="weeklyText">
-0 daily missions completed
+<p id="weeklyProgress">
+0 / 7 daily missions completed
 </p>
 
 </div>
@@ -367,10 +354,11 @@ Complete the daily missions and support RM throughout the week.
 <h2>💜 Important</h2>
 
 <div class="notice">
-The buttons take you to the official music platforms.
-The completion buttons are a personal mission tracker on this website.
-They do not submit or manufacture streams/views on Spotify or YouTube.
-The platforms themselves decide what counts.
+This website opens the actual music/video pages.
+The progress buttons are only a personal mission tracker.
+They do not create, submit, or manufacture Spotify streams or
+YouTube views. Spotify and YouTube determine their own official
+counts.
 </div>
 
 </div>
@@ -384,9 +372,9 @@ The platforms themselves decide what counts.
 
 <div class="card">
 
-<h2>🎯 Today's Mission</h2>
+<h2>🎯 Daily Mission</h2>
 
-<div class="mission-title" id="missionSong">
+<div class="song" id="missionSong">
 Wild Flower
 </div>
 
@@ -400,11 +388,11 @@ Listen to Wild Flower 5 times on Spotify and watch the official MV 2 times on Yo
 
 <h2>🏆 How to Participate</h2>
 
-<p>1. Open Spotify using the official button.</p>
-<p>2. Listen normally according to Spotify's rules.</p>
-<p>3. Open the official YouTube MV.</p>
-<p>4. Watch normally according to YouTube's rules.</p>
-<p>5. Return here and record your own completed mission.</p>
+<p>1. Tap the Spotify button.</p>
+<p>2. Listen to the song normally.</p>
+<p>3. Return to the hub.</p>
+<p>4. Complete the same process again until your personal goal is reached.</p>
+<p>5. Watch the official MV normally on YouTube.</p>
 
 </div>
 
@@ -420,7 +408,8 @@ Listen to Wild Flower 5 times on Spotify and watch the official MV 2 times on Yo
 <h2>📊 Platform Monitor</h2>
 
 <p class="small">
-Public platform statistics will be added through appropriate official APIs/data sources where available.
+This section will display legitimate platform data once the appropriate
+official APIs/data sources are connected.
 </p>
 
 <div class="platforms">
@@ -428,25 +417,33 @@ Public platform statistics will be added through appropriate official APIs/data 
 <div class="platform">
 <h3>🟢 Spotify</h3>
 <div class="number">—</div>
-<p class="small">Live stream total: not connected yet</p>
+<p class="small">
+Global stream total: API connection required
+</p>
 </div>
 
 <div class="platform">
 <h3>▶️ YouTube</h3>
 <div class="number">—</div>
-<p class="small">Live view total: not connected yet</p>
+<p class="small">
+Official MV view count: API connection required
+</p>
 </div>
 
 <div class="platform">
 <h3>🍎 Apple Music</h3>
 <div class="number">—</div>
-<p class="small">Data connection coming</p>
+<p class="small">
+Official data connection required
+</p>
 </div>
 
 <div class="platform">
 <h3>🎵 iTunes</h3>
 <div class="number">—</div>
-<p class="small">Chart/ranking connection coming</p>
+<p class="small">
+Chart/data connection required
+</p>
 </div>
 
 </div>
@@ -462,10 +459,11 @@ Public platform statistics will be added through appropriate official APIs/data 
 
 <div class="card">
 
-<h2>🔐 Mission Editor</h2>
+<h2>⚙️ Change Mission</h2>
 
 <p class="small">
-This test editor saves the mission on this browser. A secure shared admin system will require a backend/database later.
+Test version: changes are saved on this browser. A shared administrator
+system will be added when we connect a database.
 </p>
 
 <label>Song title</label>
@@ -487,27 +485,18 @@ value="Listen to Wild Flower 5 times on Spotify and watch the official MV 2 time
 >
 
 <button
-class="admin-button"
+class="btn mission-btn"
 onclick="saveMission()">
 Save Mission
 </button>
 
+<br><br>
+
 <button
-class="admin-button reset"
+class="btn reset"
 onclick="resetProgress()">
 Reset Test Progress
 </button>
-
-</div>
-
-<div class="card">
-
-<h2>⚠️ Admin note</h2>
-
-<p>
-This first version is a test. Anyone who has access to this browser can open the editor.
-Before using it publicly, we will add proper administrator authentication and a shared database.
-</p>
 
 </div>
 
@@ -530,40 +519,39 @@ Spotify, YouTube, Apple Music or iTunes.
 
 <script>
 
-let data = JSON.parse(
-localStorage.getItem("rmMissionData")
-) || {
-
+let data =
+JSON.parse(localStorage.getItem("rmStreamingHub"))
+||
+{
 song:"Wild Flower",
 artist:"RM (with youjeen)",
 spotifyGoal:5,
 youtubeGoal:2,
-
 spotifyDone:0,
 youtubeDone:0,
 weeklyDone:0,
-
 description:
 "Listen to Wild Flower 5 times on Spotify and watch the official MV 2 times on YouTube."
-
 };
 
 
 function saveData(){
 
 localStorage.setItem(
-"rmMissionData",
+"rmStreamingHub",
 JSON.stringify(data)
 );
 
 }
 
 
-function show(section){
+function showSection(section){
 
 document
 .querySelectorAll("section")
-.forEach(s => s.classList.add("hidden"));
+.forEach(function(s){
+s.classList.add("hidden");
+});
 
 document
 .getElementById(section)
@@ -574,102 +562,106 @@ document
 
 function update(){
 
-document.getElementById("homeSong").textContent=data.song;
-document.getElementById("homeArtist").textContent=data.artist;
+document.getElementById("songTitle").textContent =
+data.song;
 
-document.getElementById("missionSong").textContent=data.song;
+document.getElementById("artistName").textContent =
+data.artist;
 
-document.getElementById("missionDescription").textContent=
+document.getElementById("missionSong").textContent =
+data.song;
+
+document.getElementById("missionDescription").textContent =
 data.description;
 
-document.getElementById("spotifyGoalText").textContent=
-"Listen " + data.spotifyGoal + " times";
 
-document.getElementById("youtubeGoalText").textContent=
-"Watch the MV " + data.youtubeGoal + " times";
+/* Spotify */
 
-
-let sp =
+let spotifyPercent =
 Math.min(
-data.spotifyDone / data.spotifyGoal * 100,
+(data.spotifyDone / data.spotifyGoal) * 100,
 100
 );
-
-let yt =
-Math.min(
-data.youtubeDone / data.youtubeGoal * 100,
-100
-);
-
 
 document.getElementById("spotifyBar")
-.style.width=sp+"%";
-
-document.getElementById("youtubeBar")
-.style.width=yt+"%";
-
+.style.width =
+spotifyPercent + "%";
 
 document.getElementById("spotifyProgress")
-.textContent=
+.textContent =
 data.spotifyDone +
 " / " +
 data.spotifyGoal +
 " completed";
 
 
+/* YouTube */
+
+let youtubePercent =
+Math.min(
+(data.youtubeDone / data.youtubeGoal) * 100,
+100
+);
+
+document.getElementById("youtubeBar")
+.style.width =
+youtubePercent + "%";
+
 document.getElementById("youtubeProgress")
-.textContent=
+.textContent =
 data.youtubeDone +
 " / " +
 data.youtubeGoal +
 " completed";
 
 
-let dailyComplete =
-(data.spotifyDone >= data.spotifyGoal &&
-data.youtubeDone >= data.youtubeGoal);
-
-
-if(dailyComplete && data.weeklyDone < 7){
-
-data.weeklyDone=1;
-
-saveData();
-
-}
-
+/* Weekly */
 
 let weeklyPercent =
-Math.min(data.weeklyDone / 7 * 100,100);
-
+Math.min(
+(data.weeklyDone / 7) * 100,
+100
+);
 
 document.getElementById("weeklyBar")
-.style.width=weeklyPercent+"%";
+.style.width =
+weeklyPercent + "%";
 
-
-document.getElementById("weeklyText")
-.textContent=
+document.getElementById("weeklyProgress")
+.textContent =
 data.weeklyDone +
 " / 7 daily missions completed";
 
 
-document.getElementById("editSong").value=data.song;
-document.getElementById("editArtist").value=data.artist;
-document.getElementById("editSpotify").value=data.spotifyGoal;
-document.getElementById("editYoutube").value=data.youtubeGoal;
-document.getElementById("editDescription").value=data.description;
+/* Admin */
+
+document.getElementById("editSong").value =
+data.song;
+
+document.getElementById("editArtist").value =
+data.artist;
+
+document.getElementById("editSpotify").value =
+data.spotifyGoal;
+
+document.getElementById("editYoutube").value =
+data.youtubeGoal;
+
+document.getElementById("editDescription").value =
+data.description;
 
 }
 
 
-function addSpotifyProgress(){
+/* Personal progress only */
+
+function addSpotify(){
 
 if(data.spotifyDone < data.spotifyGoal){
 
 data.spotifyDone++;
 
 saveData();
-
 update();
 
 }
@@ -677,14 +669,13 @@ update();
 }
 
 
-function addYoutubeProgress(){
+function addYoutube(){
 
 if(data.youtubeDone < data.youtubeGoal){
 
 data.youtubeDone++;
 
 saveData();
-
 update();
 
 }
@@ -694,52 +685,53 @@ update();
 
 function saveMission(){
 
-data.song=
+data.song =
 document.getElementById("editSong").value;
 
-data.artist=
+data.artist =
 document.getElementById("editArtist").value;
 
-data.spotifyGoal=
+data.spotifyGoal =
 Math.max(
 1,
 Number(document.getElementById("editSpotify").value)
 );
 
-data.youtubeGoal=
+data.youtubeGoal =
 Math.max(
 1,
 Number(document.getElementById("editYoutube").value)
 );
 
-data.description=
+data.description =
 document.getElementById("editDescription").value;
 
-data.spotifyDone=0;
-data.youtubeDone=0;
+
+/* Reset today's personal progress */
+
+data.spotifyDone = 0;
+data.youtubeDone = 0;
 
 saveData();
-
 update();
 
 alert("Mission saved!");
 
-show("home");
+showSection("home");
 
 }
 
 
 function resetProgress(){
 
-data.spotifyDone=0;
-data.youtubeDone=0;
-data.weeklyDone=0;
+data.spotifyDone = 0;
+data.youtubeDone = 0;
+data.weeklyDone = 0;
 
 saveData();
-
 update();
 
-alert("Test progress reset.");
+alert("Test progress has been reset.");
 
 }
 
