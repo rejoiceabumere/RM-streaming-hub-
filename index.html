@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RM Streaming Hub</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f6f2f7;
+  color: #241d29;
+}
+
+header {
+  background: linear-gradient(135deg, #201829, #765d80);
+  color: white;
+  text-align: center;
+  padding: 45px 20px;
+}
+
+header h1 {
+  font-size: 38px;
+  margin: 0 0 10px;
+}
+
+header p {
+  margin: 0;
+  opacity: .9;
+}
+
+nav {
+  background: white;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 10px #0001;
+}
+
+nav button {
+  border: none;
+  background: #eee8f0;
+  padding: 10px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+nav button:hover {
+  background: #765d80;
+  color: white;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  padding: 22px;
+  margin: 18px 0;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px #00000010;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.mission {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 12px 0;
+}
+
+.progress {
+  height: 16px;
+  background: #e8e1eb;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #765d80;
+  transition: width .5s;
+}
+
+.platforms {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 15px;
+}
+
+.platform {
+  border: 1px solid #e4dfe6;
+  border-radius: 16px;
+  padding: 18px;
+}
+
+.platform h3 {
+  margin-top: 0;
+}
+
+.number {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.increase {
+  color: #5c4770;
+  font-weight: bold;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  background: #241d29;
+  padding: 12px 17px;
+  border-radius: 12px;
+}
+
+.goal-box {
+  text-align: center;
+  padding: 25px;
+  border-radius: 18px;
+  background: #f3edf5;
+}
+
+.big {
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #766c7a;
+  font-size: 13px;
+}
+
+.small {
+  color: #777;
+  font-size: 13px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin: 6px 0 12px;
+}
+
+.admin-button {
+  background: #765d80;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+@media(max-width:600px) {
+  header h1 {
+    font-size: 30px;
+  }
+
+  nav {
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🐨 RM Streaming Hub</h1>
+  <p>Stream • Support • Achieve</p>
+</header>
+
+<nav>
+  <button onclick="showSection('home')">Home</button>
+  <button onclick="showSection('missions')">Missions</button>
+  <button onclick="showSection('platforms')">Platforms</button>
+  <button onclick="showSection('guide')">Streaming Guide</button>
+</nav>
+
+<div class="container">
+
+<!-- HOME -->
+<section id="home">
+
+<div class="card">
+  <h2>🎯 Today's Mission</h2>
+  <div class="mission" id="dailyMission">
+    RM Streaming Mission
+  </div>
+
+  <div class="progress">
+    <div class="progress-bar" id="dailyBar"></div>
+  </div>
+
+  <p id="dailyText">0 / 500,000 streams</p>
+</div>
+
+<div class="card">
+  <h2>📅 Weekly Mission</h2>
+
+  <div class="mission" id="weeklyMission">
+    RM Weekly Streaming Goal
+  </div>
+
+  <div class="progress">
+    <div class="progress-bar" id="weeklyBar"></div>
+  </div>
+
+  <p id="weeklyText">0 / 3,000,000 streams</p>
+</div>
+
+<div class="card">
+  <h2>📊 Platform Progress</h2>
+
+  <div class="platforms">
+
+    <div class="platform">
+      <h3>🟢 Spotify</h3>
+      <div class="number" id="spotify">0</div>
+      <p class="increase">Daily increase: +0</p>
+    </div>
+
+    <div class="platform">
+      <h3>▶️ YouTube</h3>
+      <div class="number" id="youtube">0</div>
+      <p class="increase">Daily increase: +0</p>
+    </div>
+
+    <div class="platform">
+      <h3>🍎 Apple Music</h3>
+      <div class="number" id="apple">0</div>
+      <p class="increase">Daily increase: +0</p>
+    </div>
+
+    <div class="platform">
+      <h3>🎵 iTunes</h3>
+      <div class="number" id="itunes">0</div>
+      <p class="increase">Daily increase: +0</p>
+    </div>
+
+  </div>
+</div>
+
+<div class="card">
+  <h2>🎧 Listen to RM</h2>
+
+  <div class="buttons">
+    <a class="btn" href="https://open.spotify.com/" target="_blank">
+      Spotify
+    </a>
+
+    <a class="btn" href="https://www.youtube.com/" target="_blank">
+      YouTube
+    </a>
+
+    <a class="btn" href="https://music.apple.com/" target="_blank">
+      Apple Music
+    </a>
+
+    <a class="btn" href="https://www.apple.com/itunes/" target="_blank">
+      iTunes
+    </a>
+  </div>
+</div>
+
+</section>
+
+
+<!-- MISSIONS -->
+<section id="missions" class="hidden">
+
+<div class="card">
+  <h2>🎯 Daily Mission</h2>
+
+  <div class="goal-box">
+    <div class="big">RM</div>
+    <p id="missionDailyDisplay">
+      Stream RM today and help us reach the daily goal!
+    </p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>📅 Weekly Mission</h2>
+
+  <div class="goal-box">
+    <div class="big">RM</div>
+    <p id="missionWeeklyDisplay">
+      Let's reach this week's RM streaming goal together!
+    </p>
+  </div>
+</div>
+
+<div class="card">
+  <h2>🏆 How Fans Can Participate</h2>
+
+  <p>1. Choose an official platform.</p>
+  <p>2. Listen to RM's music normally.</p>
+  <p>3. Follow the platform's streaming rules.</p>
+  <p>4. Check the daily mission.</p>
+  <p>5. Help the fandom reach the weekly goal.</p>
+</div>
+
+</section>
+
+
+<!-- PLATFORMS -->
+<section id="platforms" class="hidden">
+
+<div class="card">
+
+<h2>📈 RM Platform Monitor</h2>
+
+<p class="small">
+Platform statistics shown here will eventually be connected
+to appropriate official or permitted data sources.
+</p>
+
+<table style="width:100%;border-collapse:collapse">
+
+<tr>
+<th style="text-align:left;padding:10px">Platform</th>
+<th style="padding:10px">Current</th>
+<th style="padding:10px">Increase</th>
+</tr>
+
+<tr>
+<td style="padding:10px">Spotify</td>
+<td id="tableSpotify" style="text-align:center">0</td>
+<td style="text-align:center">+0</td>
+</tr>
+
+<tr>
+<td style="padding:10px">YouTube</td>
+<td id="tableYoutube" style="text-align:center">0</td>
+<td style="text-align:center">+0</td>
+</tr>
+
+<tr>
+<td style="padding:10px">Apple Music</td>
+<td id="tableApple" style="text-align:center">0</td>
+<td style="text-align:center">+0</td>
+</tr>
+
+<tr>
+<td style="padding:10px">iTunes</td>
+<td id="tableItunes" style="text-align:center">0</td>
+<td style="text-align:center">+0</td>
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- GUIDE -->
+<section id="guide" class="hidden">
+
+<div class="card">
+
+<h2>📖 RM Streaming Guide</h2>
+
+<h3>🎧 Spotify</h3>
+<p>
+Use the official Spotify app or website and listen normally.
+Avoid artificial or automated streaming.
+</p>
+
+<h3>▶️ YouTube</h3>
+<p>
+Watch official RM videos normally and follow YouTube's rules.
+</p>
+
+<h3>🍎 Apple Music</h3>
+<p>
+Listen through official Apple Music services and follow Apple's
+usage rules.
+</p>
+
+<h3>🎵 iTunes</h3>
+<p>
+Use official Apple purchasing/chart services where applicable.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>💜 Our Goal</h2>
+
+<p>
+This website is a fan-made space designed to help ARMY
+organize streaming goals and celebrate RM's music.
+</p>
+
+</div>
+
+</section>
+
+</div>
+
+<footer>
+RM Streaming Hub • Fan-made project
+<br><br>
+Not affiliated with BTS, BIGHIT MUSIC, HYBE, Spotify,
+YouTube, Apple Music or iTunes.
+</footer>
+
+
+<script>
+
+function showSection(section) {
+
+  const sections = [
+    "home",
+    "missions",
+    "platforms",
+    "guide"
+  ];
+
+  sections.forEach(function(id) {
+
+    document.getElementById(id)
+      .classList.add("hidden");
+
+  });
+
+  document.getElementById(section)
+    .classList.remove("hidden");
+}
+
+
+function updateProgress() {
+
+  const dailyCurrent = 0;
+  const dailyTarget = 500000;
+
+  const weeklyCurrent = 0;
+  const weeklyTarget = 3000000;
+
+  const dailyPercent =
+    Math.min((dailyCurrent / dailyTarget) * 100, 100);
+
+  const weeklyPercent =
+    Math.min((weeklyCurrent / weeklyTarget) * 100, 100);
+
+  document.getElementById("dailyBar")
+    .style.width = dailyPercent + "%";
+
+  document.getElementById("weeklyBar")
+    .style.width = weeklyPercent + "%";
+
+  document.getElementById("dailyText").innerText =
+    dailyCurrent.toLocaleString() +
+    " / " +
+    dailyTarget.toLocaleString() +
+    " streams";
+
+  document.getElementById("weeklyText").innerText =
+    weeklyCurrent.toLocaleString() +
+    " / " +
+    weeklyTarget.toLocaleString() +
+    " streams";
+}
+
+
+updateProgress();
+
+</script>
+
+</body>
+</html>
