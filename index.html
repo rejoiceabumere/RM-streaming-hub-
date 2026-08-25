@@ -3,10 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>RM Streaming Hub</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -23,8 +27,8 @@ header{
 }
 
 header h1{
-  margin:0 0 8px;
-  font-size:36px;
+  margin:0 0 10px;
+  font-size:38px;
 }
 
 header p{
@@ -40,7 +44,7 @@ nav{
   gap:8px;
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:20;
   box-shadow:0 2px 10px #0001;
   overflow-x:auto;
 }
@@ -60,7 +64,7 @@ nav button:hover{
 }
 
 .container{
-  max-width:950px;
+  max-width:1000px;
   margin:auto;
   padding:20px;
 }
@@ -75,40 +79,39 @@ nav button:hover{
 
 .hero{
   text-align:center;
-  background:linear-gradient(135deg,#eee5f1,#ffffff);
 }
 
-.flower{
-  font-size:70px;
+.koala{
+  font-size:60px;
 }
 
-.song{
+.song-title{
   font-size:30px;
   font-weight:bold;
-  margin:8px 0;
 }
 
 .artist{
-  color:#716776;
+  color:#766c7a;
+  margin-top:5px;
 }
 
 .buttons{
   display:flex;
   flex-wrap:wrap;
-  gap:10px;
   justify-content:center;
+  gap:10px;
   margin-top:20px;
 }
 
 .btn{
   display:inline-block;
-  border:0;
+  text-decoration:none;
+  color:white;
   padding:13px 18px;
   border-radius:12px;
-  color:white;
-  text-decoration:none;
-  font-weight:bold;
+  border:0;
   cursor:pointer;
+  font-weight:bold;
 }
 
 .spotify{
@@ -119,6 +122,10 @@ nav button:hover{
   background:#d00000;
 }
 
+.apple{
+  background:#555;
+}
+
 .purple{
   background:#765d80;
 }
@@ -127,56 +134,81 @@ nav button:hover{
   background:#777;
 }
 
+.mission{
+  padding:20px;
+  border-radius:18px;
+  background:#f3edf5;
+  margin-top:15px;
+}
+
+.mission-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin:18px 0;
+  padding:15px;
+  background:white;
+  border-radius:14px;
+}
+
+.mission-icon{
+  font-size:30px;
+}
+
+.mission-info{
+  flex:1;
+}
+
 .progress{
-  height:16px;
-  background:#e8e1eb;
+  height:14px;
+  background:#e5dfe7;
   border-radius:20px;
   overflow:hidden;
-  margin:12px 0;
+  margin-top:8px;
 }
 
 .progress-bar{
   height:100%;
   width:0%;
   background:#765d80;
-  transition:.4s;
+  transition:.5s;
 }
 
 .status{
-  padding:14px;
-  border-radius:12px;
-  background:#f3edf5;
   margin-top:15px;
+  padding:14px;
+  background:#f3edf5;
+  border-radius:12px;
 }
 
-.complete{
-  background:#eeeaf5;
+.success{
+  background:#eeeaf7;
   text-align:center;
-  padding:25px;
-  border-radius:18px;
+  padding:30px;
+  border-radius:20px;
 }
 
-.reward{
-  font-size:20px;
-  font-weight:bold;
-  margin-top:12px;
+.reward-icon{
+  font-size:60px;
 }
 
-.platforms{
+.platform-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
   gap:15px;
 }
 
 .platform{
   border:1px solid #e3dde5;
   border-radius:16px;
-  padding:18px;
+  padding:20px;
 }
 
-.number{
-  font-size:27px;
+.platform-number{
+  font-size:28px;
   font-weight:bold;
+  margin:10px 0;
 }
 
 .small{
@@ -194,8 +226,7 @@ input{
   padding:12px;
   border:1px solid #ddd;
   border-radius:10px;
-  margin:7px 0 14px;
-  font-size:15px;
+  margin:7px 0 15px;
 }
 
 label{
@@ -209,422 +240,607 @@ footer{
   font-size:13px;
 }
 
+.notice{
+  border-left:4px solid #765d80;
+  padding:12px;
+  background:#f7f3f8;
+}
+
 @media(max-width:600px){
+
   header h1{
     font-size:29px;
   }
 
-  .song{
-    font-size:24px;
+  .song-title{
+    font-size:25px;
   }
 
-  .card{
-    padding:18px;
+  .mission-row{
+    align-items:flex-start;
   }
+
 }
+
 </style>
 </head>
+
 
 <body>
 
 <header>
-  <h1>🐨 RM Streaming Hub</h1>
+
+  <div class="koala">🐨</div>
+
+  <h1>RM Streaming Hub</h1>
+
   <p>Stream • Support • Achieve</p>
+
 </header>
 
+
 <nav>
-  <button onclick="showSection('home')">Home</button>
-  <button onclick="showSection('missions')">Missions</button>
-  <button onclick="showSection('platforms')">Platforms</button>
-  <button onclick="showSection('settings')">Mission Editor</button>
+
+  <button onclick="showSection('home')">
+    Home
+  </button>
+
+  <button onclick="showSection('missions')">
+    Missions
+  </button>
+
+  <button onclick="showSection('platforms')">
+    Platform Tracker
+  </button>
+
+  <button onclick="showSection('editor')">
+    Mission Editor
+  </button>
+
 </nav>
 
+
 <div class="container">
+
 
 <!-- HOME -->
 
 <section id="home">
 
-<div class="card hero">
+  <div class="card hero">
 
-  <div class="flower">🌸</div>
+    <h2>🌸 Today's Featured Mission</h2>
 
-  <h2>Today's Mission</h2>
+    <div class="song-title" id="songTitle">
+      Wild Flower
+    </div>
 
-  <div class="song" id="songTitle">
-    Wild Flower
+    <div class="artist" id="artistName">
+      RM (with youjeen)
+    </div>
+
+
+    <div class="buttons">
+
+      <a
+        class="btn spotify"
+        href="https://open.spotify.com/track/1AZjCZSGEjlxUufFQwSszF"
+        target="_blank"
+        rel="noopener">
+        🎧 Listen on Spotify
+      </a>
+
+
+      <a
+        class="btn youtube"
+        href="https://www.youtube.com/watch?v=u18be_kRmC0"
+        target="_blank"
+        rel="noopener">
+        ▶️ Watch Official MV
+      </a>
+
+
+      <a
+        class="btn apple"
+        href="https://music.apple.com/"
+        target="_blank"
+        rel="noopener">
+        🍎 Apple Music
+      </a>
+
+    </div>
+
   </div>
 
-  <div class="artist" id="artist">
-    RM (with youjeen)
+
+  <!-- MISSIONS -->
+
+  <div class="card">
+
+    <h2>🎯 Today's Mission</h2>
+
+    <div class="mission">
+
+
+      <div class="mission-row">
+
+        <div class="mission-icon">
+          🎧
+        </div>
+
+        <div class="mission-info">
+
+          <strong>
+            Listen to Wild Flower
+          </strong>
+
+          <div class="progress">
+
+            <div
+              id="spotifyProgressBar"
+              class="progress-bar">
+            </div>
+
+          </div>
+
+          <small id="spotifyProgressText">
+            0 / 5 verified listens
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div class="mission-row">
+
+        <div class="mission-icon">
+          ▶️
+        </div>
+
+        <div class="mission-info">
+
+          <strong>
+            Watch the official Wild Flower MV
+          </strong>
+
+          <div class="progress">
+
+            <div
+              id="youtubeProgressBar"
+              class="progress-bar">
+            </div>
+
+          </div>
+
+          <small id="youtubeProgressText">
+            0 / 2 verified watches
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div class="status">
+
+        <strong>Mission status:</strong>
+
+        <span id="missionStatus">
+          Keep going! 💜
+        </span>
+
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="buttons">
 
-    <a
-      class="btn spotify"
-      href="https://open.spotify.com/track/1AZjCZSGEjlxUufFQwSszF"
-      target="_blank"
-      rel="noopener"
-      onclick="spotifyOpened()">
-      🎧 Listen on Spotify
-    </a>
+  <!-- CELEBRATION -->
 
-    <a
-      class="btn youtube"
-      href="https://www.youtube.com/watch?v=u18be_kRmC0"
-      target="_blank"
-      rel="noopener">
-      ▶️ Watch Official MV
-    </a>
+  <div
+    id="celebration"
+    class="card success hidden">
+
+    <div class="reward-icon">
+      🏆💜🌸
+    </div>
+
+    <h2>
+      Mission Complete!
+    </h2>
+
+    <p>
+      You did it! Thank you for supporting RM
+      and completing today's mission.
+    </p>
+
+    <h3>
+      🎁 Your Namjoon-inspired reward
+    </h3>
+
+    <p>
+      Keep growing, keep creating, and keep walking
+      your own path. Your effort matters.
+    </p>
+
+    <p class="small">
+      Original fan-made congratulatory message.
+    </p>
 
   </div>
 
-  <div id="spotifyStatus" class="status">
-    ⏳ Spotify verification is not connected yet.
-    <br>
-    <span class="small">
-      Your website will only record a listen after Spotify
-      provides valid listening information.
-    </span>
-  </div>
-
-</div>
-
-
-<!-- SPOTIFY MISSION -->
-
-<div class="card">
-
-  <h2>🎧 Spotify Mission</h2>
-
-  <p>
-    Listen to <strong id="spotifySong">Wild Flower</strong>
-    <strong id="spotifyGoalText">5</strong> times.
-  </p>
-
-  <div class="progress">
-    <div id="spotifyBar" class="progress-bar"></div>
-  </div>
-
-  <p id="spotifyProgress">
-    0 / 5 verified listens
-  </p>
-
-</div>
-
-
-<!-- YOUTUBE MISSION -->
-
-<div class="card">
-
-  <h2>▶️ YouTube Mission</h2>
-
-  <p>
-    Watch the official MV
-    <strong id="youtubeGoalText">2</strong> times.
-  </p>
-
-  <div class="progress">
-    <div id="youtubeBar" class="progress-bar"></div>
-  </div>
-
-  <p id="youtubeProgress">
-    0 / 2 verified watches
-  </p>
-
-  <div class="status">
-    <strong>Official video:</strong>
-    RM — Wild Flower
-  </div>
-
-</div>
-
-
-<!-- COMPLETION -->
-
-<div id="completionCard" class="card complete hidden">
-
-  <div style="font-size:55px">🏆</div>
-
-  <h2>Mission Complete!</h2>
-
-  <p>
-    You completed today's RM Streaming Hub mission.
-  </p>
-
-  <div class="reward">
-    💜 Your RM-inspired reward:
-  </div>
-
-  <p>
-    “Keep creating your own path, one step at a time.”
-  </p>
-
-  <p class="small">
-    This is an original fan-made congratulatory message,
-    not an RM lyric.
-  </p>
-
-</div>
 
 </section>
 
 
-<!-- MISSIONS -->
 
-<section id="missions" class="hidden">
+<!-- MISSIONS PAGE -->
 
-<div class="card">
+<section
+  id="missions"
+  class="hidden">
 
-  <h2>🎯 Daily Mission</h2>
+  <div class="card">
 
-  <h3>🌸 Wild Flower</h3>
+    <h2>🎯 RM Daily Mission</h2>
 
-  <p id="missionDescription">
-    Listen to Wild Flower 5 times on Spotify
-    and watch the official MV 2 times on YouTube.
-  </p>
+    <h3>
+      🌸 Wild Flower
+    </h3>
 
-</div>
+    <p>
+      Complete the listening and MV goals shown
+      on the homepage.
+    </p>
 
+    <div class="notice">
 
-<div class="card">
+      <strong>
+        Important:
+      </strong>
 
-  <h2>🏆 How It Works</h2>
-
-  <p>1. Open the official music/video link.</p>
-
-  <p>2. Listen or watch normally.</p>
-
-  <p>3. The hub does not count a click as a stream.</p>
-
-  <p>4. Verified platform information is used when available.</p>
-
-  <p>5. Complete the mission and unlock the celebration.</p>
-
-</div>
-
-</section>
-
-
-<!-- PLATFORMS -->
-
-<section id="platforms" class="hidden">
-
-<div class="card">
-
-  <h2>📊 Platform Monitor</h2>
-
-  <p class="small">
-    Only legitimate data supplied by the relevant platform
-    or its official API will be displayed here.
-  </p>
-
-  <div class="platforms">
-
-    <div class="platform">
-
-      <h3>🟢 Spotify</h3>
-
-      <div class="number" id="spotifyPlatform">
-        —
-      </div>
-
-      <p class="small">
-        Spotify does not provide this website with a
-        public global stream counter through the normal
-        user listening-history API.
-      </p>
-
-    </div>
-
-
-    <div class="platform">
-
-      <h3>▶️ YouTube</h3>
-
-      <div class="number" id="youtubeViews">
-        —
-      </div>
-
-      <p class="small">
-        Official MV public view count will appear here
-        after the YouTube API connection is configured.
-      </p>
-
-    </div>
-
-
-    <div class="platform">
-
-      <h3>🍎 Apple Music</h3>
-
-      <div class="number">
-        —
-      </div>
-
-      <p class="small">
-        Officially available Apple Music data only.
-      </p>
-
-    </div>
-
-
-    <div class="platform">
-
-      <h3>🎵 iTunes</h3>
-
-      <div class="number">
-        —
-      </div>
-
-      <p class="small">
-        Appropriate official Apple catalog/chart data only.
-      </p>
+      The website should only mark a play as
+      officially verified when legitimate platform
+      or listening-tracker data confirms it.
 
     </div>
 
   </div>
 
-</div>
+
+  <div class="card">
+
+    <h2>💜 How to Participate</h2>
+
+    <p>
+      1. Open the official music platform.
+    </p>
+
+    <p>
+      2. Listen normally.
+    </p>
+
+    <p>
+      3. Open the official MV when completing
+      the YouTube mission.
+    </p>
+
+    <p>
+      4. Follow each platform's rules.
+    </p>
+
+    <p>
+      5. Return to the hub to see your verified
+      mission progress.
+    </p>
+
+  </div>
 
 </section>
+
+
+
+<!-- PLATFORM TRACKER -->
+
+<section
+  id="platforms"
+  class="hidden">
+
+  <div class="card">
+
+    <h2>📊 RM Platform Tracker</h2>
+
+    <p class="small">
+
+      This dashboard is designed to display
+      official platform information when a permitted
+      API/data connection is available.
+
+    </p>
+
+
+    <div class="platform-grid">
+
+
+      <div class="platform">
+
+        <h3>
+          🟢 Spotify
+        </h3>
+
+        <div
+          class="platform-number"
+          id="spotifyStreams">
+          Not connected
+        </div>
+
+        <p class="small">
+
+          Spotify's current Web API does not provide
+          a simple public endpoint for an artist's
+          global daily stream total.
+
+        </p>
+
+      </div>
+
+
+      <div class="platform">
+
+        <h3>
+          ▶️ YouTube
+        </h3>
+
+        <div
+          class="platform-number"
+          id="youtubeViews">
+          Not connected
+        </div>
+
+        <p class="small">
+
+          Official MV view count can be connected
+          through YouTube's Data API.
+
+        </p>
+
+      </div>
+
+
+      <div class="platform">
+
+        <h3>
+          🍎 Apple Music
+        </h3>
+
+        <div
+          class="platform-number"
+          id="appleMusicData">
+          Not connected
+        </div>
+
+        <p class="small">
+
+          Apple Music API catalog information
+          can be connected here.
+
+        </p>
+
+      </div>
+
+
+      <div class="platform">
+
+        <h3>
+          🎵 iTunes
+        </h3>
+
+        <div
+          class="platform-number"
+          id="itunesData">
+          Not connected
+        </div>
+
+        <p class="small">
+
+          Official Apple/iTunes catalog or chart
+          information can be displayed here.
+
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>
+      📈 Daily Update
+    </h2>
+
+    <p class="small">
+      Last update:
+      <strong id="lastUpdate">
+        Not connected
+      </strong>
+    </p>
+
+    <p>
+      The dashboard will never invent stream
+      numbers. Data will only appear after the
+      appropriate official connection is configured.
+    </p>
+
+  </div>
+
+</section>
+
 
 
 <!-- MISSION EDITOR -->
 
-<section id="settings" class="hidden">
+<section
+  id="editor"
+  class="hidden">
 
-<div class="card">
+  <div class="card">
 
-  <h2>⚙️ Mission Editor</h2>
+    <h2>
+      ⚙️ Mission Editor
+    </h2>
 
-  <p class="small">
-    This test editor saves changes only in this browser.
-    A secure shared administrator system can be added later.
-  </p>
+    <p class="small">
 
-  <label>Song</label>
+      This allows you to change the mission
+      displayed by this browser.
 
-  <input
-    id="editSong"
-    value="Wild Flower">
-
-
-  <label>Artist</label>
-
-  <input
-    id="editArtist"
-    value="RM (with youjeen)">
+    </p>
 
 
-  <label>Spotify goal</label>
+    <label>
+      Song
+    </label>
 
-  <input
-    id="editSpotifyGoal"
-    type="number"
-    min="1"
-    value="5">
-
-
-  <label>YouTube goal</label>
-
-  <input
-    id="editYoutubeGoal"
-    type="number"
-    min="1"
-    value="2">
+    <input
+      id="editSong"
+      value="Wild Flower">
 
 
-  <label>Mission description</label>
+    <label>
+      Artist
+    </label>
 
-  <input
-    id="editDescription"
-    value="Listen to Wild Flower 5 times on Spotify and watch the official MV 2 times on YouTube.">
-
-
-  <button
-    class="btn purple"
-    onclick="saveMission()">
-    Save Mission
-  </button>
+    <input
+      id="editArtist"
+      value="RM (with youjeen)">
 
 
-  <button
-    class="btn gray"
-    onclick="resetProgress()">
-    Reset Test Progress
-  </button>
+    <label>
+      Spotify listen goal
+    </label>
 
-</div>
+    <input
+      id="editSpotifyGoal"
+      type="number"
+      min="1"
+      value="5">
+
+
+    <label>
+      YouTube watch goal
+    </label>
+
+    <input
+      id="editYoutubeGoal"
+      type="number"
+      min="1"
+      value="2">
+
+
+    <button
+      class="btn purple"
+      onclick="saveMission()">
+
+      Save Mission
+
+    </button>
+
+
+    <button
+      class="btn gray"
+      onclick="resetMission()">
+
+      Reset Progress
+
+    </button>
+
+  </div>
 
 </section>
 
+
 </div>
+
 
 
 <footer>
 
-RM Streaming Hub • Fan-made project
+  RM Streaming Hub • Fan-made project
 
-<br><br>
+  <br><br>
 
-Not affiliated with BTS, BIGHIT MUSIC, HYBE,
-Spotify, YouTube, Apple Music or iTunes.
+  Not affiliated with BTS, BIGHIT MUSIC, HYBE,
+  Spotify, YouTube, Apple Music or iTunes.
 
 </footer>
 
 
+
 <script>
 
+
 /*
-  RM STREAMING HUB
-
-  IMPORTANT:
-  This browser-only page does NOT pretend that a click
-  or 30 seconds away from the website equals an official
-  Spotify stream.
-
-  Real Spotify verification requires Spotify OAuth and
-  an appropriate secure integration.
+========================================
+RM STREAMING HUB DATA
+========================================
 */
 
-
-let appData =
-JSON.parse(localStorage.getItem("rmHubData"))
+let data =
+JSON.parse(
+  localStorage.getItem("rmStreamingHub")
+)
 ||
 {
   song:"Wild Flower",
   artist:"RM (with youjeen)",
+
   spotifyGoal:5,
   youtubeGoal:2,
+
   spotifyVerified:0,
-  youtubeVerified:0,
-  description:
-  "Listen to Wild Flower 5 times on Spotify and watch the official MV 2 times on YouTube."
+  youtubeVerified:0
 };
 
 
-function saveData(){
+
+/*
+========================================
+SAVE
+========================================
+*/
+
+function save(){
 
   localStorage.setItem(
-    "rmHubData",
-    JSON.stringify(appData)
+    "rmStreamingHub",
+    JSON.stringify(data)
   );
 
 }
 
 
+
+/*
+========================================
+NAVIGATION
+========================================
+*/
+
 function showSection(id){
 
   document
     .querySelectorAll("section")
-    .forEach(function(section){
+    .forEach(
+      section =>
+      section.classList.add("hidden")
+    );
 
-      section.classList.add("hidden");
-
-    });
 
   document
     .getElementById(id)
@@ -633,180 +849,166 @@ function showSection(id){
 }
 
 
-function spotifyOpened(){
 
-  document
-    .getElementById("spotifyStatus")
-    .innerHTML =
-    `
-    ⏳ Waiting for verified Spotify playback...
-    <br>
-    <span class="small">
-      Opening Spotify alone does not count as a stream.
-      The official Spotify connection must verify playback.
-    </span>
-    `;
+/*
+========================================
+UPDATE SCREEN
+========================================
+*/
 
-}
-
-
-function updateProgress(){
+function updateScreen(){
 
   document
     .getElementById("songTitle")
     .textContent =
-    appData.song;
+    data.song;
 
 
   document
-    .getElementById("artist")
+    .getElementById("artistName")
     .textContent =
-    appData.artist;
+    data.artist;
 
-
-  document
-    .getElementById("spotifySong")
-    .textContent =
-    appData.song;
-
-
-  document
-    .getElementById("spotifyGoalText")
-    .textContent =
-    appData.spotifyGoal;
-
-
-  document
-    .getElementById("youtubeGoalText")
-    .textContent =
-    appData.youtubeGoal;
-
-
-  document
-    .getElementById("missionDescription")
-    .textContent =
-    appData.description;
-
-
-  /* Spotify */
 
   let spotifyPercent =
     Math.min(
-      (appData.spotifyVerified /
-      appData.spotifyGoal) * 100,
+      100,
+      data.spotifyVerified /
+      data.spotifyGoal *
+      100
+    );
+
+
+  let youtubePercent =
+    Math.min(
+      100,
+      data.youtubeVerified /
+      data.youtubeGoal *
       100
     );
 
 
   document
-    .getElementById("spotifyBar")
+    .getElementById(
+      "spotifyProgressBar"
+    )
     .style.width =
     spotifyPercent + "%";
 
 
   document
-    .getElementById("spotifyProgress")
-    .textContent =
-    appData.spotifyVerified +
-    " / " +
-    appData.spotifyGoal +
-    " verified listens";
-
-
-  /* YouTube */
-
-  let youtubePercent =
-    Math.min(
-      (appData.youtubeVerified /
-      appData.youtubeGoal) * 100,
-      100
-    );
-
-
-  document
-    .getElementById("youtubeBar")
+    .getElementById(
+      "youtubeProgressBar"
+    )
     .style.width =
     youtubePercent + "%";
 
 
   document
-    .getElementById("youtubeProgress")
+    .getElementById(
+      "spotifyProgressText"
+    )
     .textContent =
-    appData.youtubeVerified +
+    data.spotifyVerified +
     " / " +
-    appData.youtubeGoal +
+    data.spotifyGoal +
+    " verified listens";
+
+
+  document
+    .getElementById(
+      "youtubeProgressText"
+    )
+    .textContent =
+    data.youtubeVerified +
+    " / " +
+    data.youtubeGoal +
     " verified watches";
 
 
-  /* Completion */
+  let complete =
+    data.spotifyVerified >= data.spotifyGoal &&
+    data.youtubeVerified >= data.youtubeGoal;
 
-  if(
-    appData.spotifyVerified >= appData.spotifyGoal &&
-    appData.youtubeVerified >= appData.youtubeGoal
-  ){
+
+  if(complete){
 
     document
-      .getElementById("completionCard")
+      .getElementById("celebration")
       .classList.remove("hidden");
+
+
+    document
+      .getElementById("missionStatus")
+      .textContent =
+      "🏆 Mission complete!";
+
 
   }else{
 
     document
-      .getElementById("completionCard")
+      .getElementById("celebration")
       .classList.add("hidden");
+
+
+    document
+      .getElementById("missionStatus")
+      .textContent =
+      "Keep going! 💜";
 
   }
 
 
-  /* Editor */
-
   document
     .getElementById("editSong")
     .value =
-    appData.song;
+    data.song;
 
 
   document
     .getElementById("editArtist")
     .value =
-    appData.artist;
+    data.artist;
 
 
   document
     .getElementById("editSpotifyGoal")
     .value =
-    appData.spotifyGoal;
+    data.spotifyGoal;
 
 
   document
     .getElementById("editYoutubeGoal")
     .value =
-    appData.youtubeGoal;
-
-
-  document
-    .getElementById("editDescription")
-    .value =
-    appData.description;
+    data.youtubeGoal;
 
 }
 
 
+
+/*
+========================================
+MISSION EDITOR
+========================================
+*/
+
 function saveMission(){
 
-  appData.song =
+  data.song =
     document
       .getElementById("editSong")
-      .value;
+      .value
+      .trim();
 
 
-  appData.artist =
+  data.artist =
     document
       .getElementById("editArtist")
-      .value;
+      .value
+      .trim();
 
 
-  appData.spotifyGoal =
+  data.spotifyGoal =
     Math.max(
       1,
       Number(
@@ -817,7 +1019,7 @@ function saveMission(){
     );
 
 
-  appData.youtubeGoal =
+  data.youtubeGoal =
     Math.max(
       1,
       Number(
@@ -828,63 +1030,79 @@ function saveMission(){
     );
 
 
-  appData.description =
-    document
-      .getElementById("editDescription")
-      .value;
+  save();
 
-
-  saveData();
-
-  updateProgress();
-
-  alert("Mission updated.");
+  updateScreen();
 
   showSection("home");
 
 }
 
 
-function resetProgress(){
 
-  appData.spotifyVerified = 0;
+/*
+========================================
+RESET
+========================================
+*/
 
-  appData.youtubeVerified = 0;
+function resetMission(){
 
-  saveData();
+  data.spotifyVerified = 0;
 
-  updateProgress();
+  data.youtubeVerified = 0;
 
-  alert("Test progress reset.");
+  save();
+
+  updateScreen();
 
 }
 
 
+
 /*
-  PLACEHOLDER FOR THE REAL SPOTIFY VERIFICATION
+========================================
+THESE FUNCTIONS ARE RESERVED FOR
+REAL VERIFIED DATA CONNECTIONS.
 
-  The future secure backend will call this function only
-  after Spotify has actually returned valid listening data.
+DO NOT CONNECT THEM TO BUTTON CLICKS.
 
-  Example:
-
-  recordVerifiedSpotifyListen();
-
-  It is intentionally NOT connected to a button.
+A FUTURE BACKEND/API CONNECTION SHOULD
+CALL THEM ONLY AFTER LEGITIMATE DATA
+HAS BEEN RECEIVED.
+========================================
 */
 
-function recordVerifiedSpotifyListen(){
+function verifiedSpotifyListen(){
 
   if(
-    appData.spotifyVerified <
-    appData.spotifyGoal
+    data.spotifyVerified <
+    data.spotifyGoal
   ){
 
-    appData.spotifyVerified++;
+    data.spotifyVerified++;
 
-    saveData();
+    save();
 
-    updateProgress();
+    updateScreen();
+
+  }
+
+}
+
+
+function verifiedYoutubeWatch(){
+
+  if(
+    data.youtubeVerified <
+    data.youtubeGoal
+  ){
+
+    data.youtubeVerified++;
+
+    save();
+
+    updateScreen();
 
   }
 
@@ -892,31 +1110,12 @@ function recordVerifiedSpotifyListen(){
 
 
 /*
-  PLACEHOLDER FOR REAL YOUTUBE VERIFICATION.
-
-  The future integration will update this only with
-  legitimate verification/data.
+========================================
+START
+========================================
 */
 
-function recordVerifiedYoutubeWatch(){
-
-  if(
-    appData.youtubeVerified <
-    appData.youtubeGoal
-  ){
-
-    appData.youtubeVerified++;
-
-    saveData();
-
-    updateProgress();
-
-  }
-
-}
-
-
-updateProgress();
+updateScreen();
 
 </script>
 
